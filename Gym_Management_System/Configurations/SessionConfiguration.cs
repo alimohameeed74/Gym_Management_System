@@ -4,10 +4,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Gym_Management_System.Configurations
 {
-    public class SessionConfiguration : IEntityTypeConfiguration<Session>
+    public class SessionConfiguration : BaseClassConfiguration<Session>,IEntityTypeConfiguration<Session>
     {
-        public void Configure(EntityTypeBuilder<Session> builder)
+        public new void Configure(EntityTypeBuilder<Session> builder)
         {
+            base.Configure(builder);
             builder.Property(B => B.Description).HasColumnType("varchar").HasMaxLength(100);
             builder.Property(B => B.StartDate).HasDefaultValueSql("GETDATE()");
             builder.ToTable(T =>

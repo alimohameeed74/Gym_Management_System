@@ -5,10 +5,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Gym_Management_System.Configurations
 {
-    public class GymUserConfiguration<T> : IEntityTypeConfiguration<T> where T : GymUser
+    public class GymUserConfiguration<T> :BaseClassConfiguration<T> ,IEntityTypeConfiguration<T> where T : GymUser
     {
-        public void Configure(EntityTypeBuilder<T> builder)
+        public new void Configure(EntityTypeBuilder<T> builder)
         {
+            base.Configure(builder);
             builder.Property(B => B.Name).HasColumnType("varchar").HasMaxLength(30);
             builder.Property(B => B.Email).HasColumnType("varchar").HasMaxLength(100);
             builder.Property(B => B.Phone).HasColumnType("varchar").HasMaxLength(11);

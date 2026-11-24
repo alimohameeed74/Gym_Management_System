@@ -4,10 +4,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Gym_Management_System.Configurations
 {
-    public class MembershipConfiguration : IEntityTypeConfiguration<Membership>
+    public class MembershipConfiguration : BaseClassConfiguration<Membership>,IEntityTypeConfiguration<Membership>
     {
-        public void Configure(EntityTypeBuilder<Membership> builder)
+        public new void Configure(EntityTypeBuilder<Membership> builder)
         {
+            base.Configure(builder);
             builder.Property(B => B.StartDate).HasDefaultValueSql("GETDATE()");
             builder.ToTable(T =>
             {

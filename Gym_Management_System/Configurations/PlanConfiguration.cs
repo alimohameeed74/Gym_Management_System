@@ -4,10 +4,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Gym_Management_System.Configurations
 {
-    public class PlanConfiguration : IEntityTypeConfiguration<Plan>
+    public class PlanConfiguration : BaseClassConfiguration<Plan>, IEntityTypeConfiguration<Plan>
     {
-        public void Configure(EntityTypeBuilder<Plan> builder)
+        public new void Configure(EntityTypeBuilder<Plan> builder)
         {
+            base.Configure(builder);
             builder.Property(B => B.Name).HasColumnType("varchar").HasMaxLength(30);
             builder.Property(B => B.Description).HasColumnType("varchar").HasMaxLength(100);
             builder.ToTable(T =>
