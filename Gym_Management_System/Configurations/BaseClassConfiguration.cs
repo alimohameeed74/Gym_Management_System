@@ -8,6 +8,7 @@ namespace Gym_Management_System.Configurations
     {
         public void Configure(EntityTypeBuilder<T> builder)
         {
+            builder.Property(B => B.Id).UseIdentityColumn(1, 1);
             builder.Property(B => B.CreatedAt).HasDefaultValueSql("GETDATE()");
         }
     }
